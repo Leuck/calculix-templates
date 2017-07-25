@@ -1,11 +1,5 @@
 # Compression example
 
-# RUN ANALYSIS?
-valu analysis true
-
-# RUN POST-PROCESSING?
-valu post true
-
 # PRE-PROCESSING
 
 # parameters
@@ -64,10 +58,6 @@ comp body do
 elty all element
 mesh all
 
-# plot pa all r
-# plus la all g
-# plus sa all c
-# plus ba all b
 plus e all
 rot -x
 rot c -90
@@ -78,26 +68,10 @@ plus n symXZ
 prnt se
 
 # ANALYSIS
-if analysis eq true
-    # save files
-    send all abq
-    send bottom abq nam
-    send top abq pres pressure
-    send symXZ abq nam
-    send symYZ abq nam
-    # run analysis
-    sys ccx compression
-endif
+# save files
+send all abq
+send bottom abq nam
+send top abq pres pressure
+send symXZ abq nam
+send symYZ abq nam
 
-# POST-PROCESSING
-if post eq true
-    read compression.frd nom
-    view edge
-    view elem
-    view disp
-    plot e all
-    ds 2 e 7
-    steps 4
-    max 501 i
-    min 499
-endif

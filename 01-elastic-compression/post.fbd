@@ -1,0 +1,22 @@
+# Compression example
+
+# POST-PROCESSING
+read analysis.frd add
+read analysis.inp inp nom
+
+view edge
+view elem
+view disp
+
+plot e all
+
+rot -x
+rot c -90
+rot r 45
+rot u 45
+
+ds 2 e 7
+
+steps 4
+max 501 i
+min 499
