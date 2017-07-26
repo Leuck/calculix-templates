@@ -1,0 +1,77 @@
+# Compression example
+
+# PRE-PROCESSING
+
+# parameters
+valu ra 7.5
+valu he 20.
+valu pressure 150.
+valu div 4
+valu divh 8
+valu element he20
+
+# geometry
+pnt origin  0.  0.  0.
+pnt p1      ra  0.  0.
+pnt m1      3.75 0. 0.
+pnt p2      0.  ra  0.
+pnt m2      0. 3.75 0.
+pnt mi      3.75 3.75 0.
+pnt ma      5.3033 5.3033 0.
+
+line l11    m1 origin div
+line l12    p1 m1 div
+line l1i    m1 mi div
+line arc1   ma  p1  origin  div
+line l3i    mi ma div
+line arc2   p2  ma  origin  div
+line l2i    m2 mi div
+line l21    origin m2 div
+line l22    m2 p2 div
+
+surf ! l11 l1i l2i l21
+surf ! l3i arc2 l22 l2i
+surf ! l3i l1i l12 arc1
+
+seta bottom s A001 A002 A003
+comp bottom do
+
+swep bottom body tra 0. 0. he divh a
+
+# sets
+seta top s A004 A005 A006
+comp top do
+
+seta wall s A00A A00C
+comp wall do
+
+seta symXZ s A007 A008
+comp symXZ do
+
+seta symYZ s A00F A00E
+comp symYZ do
+
+seta body b B001 B002 B003
+comp body do
+
+# mesh
+elty all element
+mesh all
+
+plus e all
+rot -x
+rot c -90
+rot r 45
+rot u 45
+plot la all g
+plus n symXZ
+prnt se
+
+# ANALYSIS
+# save files
+send all abq
+send bottom abq nam
+send top abq nam
+send symXZ abq nam
+send symYZ abq nam
+
