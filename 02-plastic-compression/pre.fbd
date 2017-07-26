@@ -6,9 +6,9 @@
 valu ra 7.5
 valu he 20.
 valu pressure 150.
-valu div 4
-valu divh 8
-valu element he20
+valu div 3
+valu divh 6
+valu element he8
 
 # geometry
 pnt origin  0.  0.  0.

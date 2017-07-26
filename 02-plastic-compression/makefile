@@ -10,7 +10,7 @@ post: $(POST) $(INP).frd
 	cgx -b $(POST)
 analysis $(INP).frd: $(MESH) $(SETS) $(LOADS) $(INP).inp
 	export OMP_NUM_THREADS=$(CPUS)
-	ccx $(INP)
+	ccx $(INP) &>ccx.log
 $(SETS) $(LOADS) $(MESH): $(PREP)
 	cgx -bg $(PREP)
 pre: $(PREP)
