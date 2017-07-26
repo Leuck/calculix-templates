@@ -3,3 +3,7 @@
 *.dlo
 *.msh
 *.frd
+*.cvg
+*.dat
+*.sta
+*.out
