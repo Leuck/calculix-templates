@@ -1,0 +1,69 @@
+# Compression example
+
+# PRE-PROCESSING
+
+# parameters
+valu l 1100.
+valu w 540.
+valu t 18.
+
+valu p -336.e-6
+
+valu div 10
+valu el qu4
+
+# geometry
+pnt origin  0.  0.  0.
+pnt p1      l   0.  0.
+pnt p2      l   w   0.
+pnt p3      0.  w   0.
+
+line l1     origin p1 div
+line l2     p1 p2 div
+line l3     p2 p3 div
+line l4     p3 origin div
+
+surf ! l1 l2 l3 l4
+
+# sets
+seta n1 p origin
+comp n1 do
+
+seta fix l l1 l2 l4
+comp fix do
+
+seta back l l1
+comp back do
+
+seta sides l l2 l4
+comp sides do
+
+seta free l l3
+comp free do
+
+seta plate s A001
+comp plate do
+
+# mesh
+elty all el
+mesh all
+
+plus e all
+rot -x
+rot c -90
+rot r 45
+rot u 45
+plot la all g
+plus n symXZ
+prnt se
+
+# ANALYSIS
+# save files
+send all abq
+send fix abq nam
+send n1 abq nam
+send back abq nam
+send sides abq nam
+send free abq nam
+send plate abq pres p
+
